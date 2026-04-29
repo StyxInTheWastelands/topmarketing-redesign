@@ -8,17 +8,19 @@ import { useLanguage } from "../components/LanguageContext";
 
 export function Home() {
   const [currentSlide, setCurrentSlide] = useState(0);
-  const [lang, setLang] = useState('pl'); 
+  // FIX: Use the global language state so it matches the rest of the site
+  const { language: lang, toggleLanguage } = useLanguage();
   const servicesRef = useRef<HTMLElement>(null);
 
+  // FIX: Added "." to paths so GitHub Pages finds them relatively
   const partners = [
-    { name: "Aviva", logo: "/images/aviva.png" },
-    { name: "BGK", logo: "/images/bgk.png" },
-    { name: "Hochtief", logo: "/images/hochtief.png" },
-    { name: "PKO", logo: "/images/pko.png" },
-    { name: "Ruukki", logo: "/images/ruukki.png" },
-    { name: "Saturn", logo: "/images/saturn.png" },
-    { name: "Tauron", logo: "/images/tauron.png" },
+    { name: "Aviva", logo: "./images/aviva.png" },
+    { name: "BGK", logo: "./images/bgk.png" },
+    { name: "Hochtief", logo: "./images/hochtief.png" },
+    { name: "PKO", logo: "./images/pko.png" },
+    { name: "Ruukki", logo: "./images/ruukki.png" },
+    { name: "Saturn", logo: "./images/saturn.png" },
+    { name: "Tauron", logo: "./images/tauron.png" },
   ];
 
   const services = [
@@ -32,13 +34,13 @@ export function Home() {
       title: lang === 'pl' ? "Słodycze reklamowe" : "Promotional Sweets",
       path: "/oferta/slodycze-reklamowe",
       icon: <Candy className="w-6 h-6" />,
-      img: "/images/slodycze.webp",
+      img: "./images/slodycze.webp", // Added "."
     },
     {
       title: lang === 'pl' ? "Produkcja opakowań" : "Packaging Production",
       path: "/oferta/opakowania",
       icon: <Package className="w-6 h-6" />,
-      img: "/images/produkcja_opakowan.jpg",
+      img: "./images/produkcja_opakowan.jpg", // Added "."
     },
     {
       title: lang === 'pl' ? "Produkcja materiałów poligraficznych i promocyjnych" : "Printing & Promotional Materials",
@@ -56,7 +58,7 @@ export function Home() {
       title: lang === 'pl' ? "Konfekcjonowanie i pakowanie produktów" : "Product Co-packing & Packaging",
       path: "/oferta/konfekcjonowanie",
       icon: <Boxes className="w-6 h-6" />,
-      img: "/images/konfekcjonowanie.jpg",
+      img: "./images/konfekcjonowanie.jpg", // Added "."
     },
   ];
 
@@ -125,7 +127,7 @@ export function Home() {
             </Link>
             
             <button 
-              onClick={() => setLang(lang === 'pl' ? 'en' : 'pl')}
+              onClick={() => toggleLanguage()}
               className="flex items-center gap-2 px-3 py-1 border border-gray-200 rounded hover:bg-gray-50 transition-all text-xs"
             >
               <Globe className="w-4 h-4 text-[#C1272D]" />
