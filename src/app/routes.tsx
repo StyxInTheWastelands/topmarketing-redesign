@@ -1,4 +1,4 @@
-import { createBrowserRouter } from "react-router";
+import { createHashRouter } from "react-router"; // Changed from createBrowserRouter
 import { Layout } from "./components/Layout";
 import { LanguageProvider } from "./components/LanguageContext";
 import { Home } from "./pages/Home";
@@ -12,30 +12,25 @@ import { PrintPromo } from "./pages/oferta/PrintPromo";
 import { PromotionalSets } from "./pages/oferta/PromotionalSets";
 import { Confection } from "./pages/oferta/Confection";
 
-export const router = createBrowserRouter(
-  [
-    {
-      path: "/",
-      element: (
-        <LanguageProvider>
-          <Layout />
-        </LanguageProvider>
-      ),
-      children: [
-        { index: true, Component: Home },
-        { path: "o-nas", Component: About },
-        { path: "kontakt", Component: Contact },
-        { path: "katalogi", Component: Catalogs },
-        { path: "oferta/zestawy-upominkowe", Component: GiftSets },
-        { path: "oferta/slodycze-reklamowe", Component: PromotionalSweets },
-        { path: "oferta/opakowania", Component: Packaging },
-        { path: "oferta/materialy-poligraficzne", Component: PrintPromo },
-        { path: "oferta/sety-reklamowe", Component: PromotionalSets },
-        { path: "oferta/konfekcjonowanie", Component: Confection },
-      ],
-    },
-  ],
+export const router = createHashRouter([
   {
-    basename: "/topmarketing-redesign",
-  }
-);
+    path: "/",
+    element: (
+      <LanguageProvider>
+        <Layout />
+      </LanguageProvider>
+    ),
+    children: [
+      { index: true, Component: Home },
+      { path: "o-nas", Component: About },
+      { path: "kontakt", Component: Contact },
+      { path: "katalogi", Component: Catalogs },
+      { path: "oferta/zestawy-upominkowe", Component: GiftSets },
+      { path: "oferta/slodycze-reklamowe", Component: PromotionalSweets },
+      { path: "oferta/opakowania", Component: Packaging },
+      { path: "oferta/materialy-poligraficzne", Component: PrintPromo },
+      { path: "oferta/sety-reklamowe", Component: PromotionalSets },
+      { path: "oferta/konfekcjonowanie", Component: Confection },
+    ],
+  },
+]);
